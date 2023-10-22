@@ -5,15 +5,24 @@
 //  Created by Shashank Shukla on 21/10/23.
 //
 
-import UIKit
+import FirebaseCore
+import FirebaseAuth
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        GIDSignIn.sharedInstance.clientID = (FirebaseApp.app()?.options.clientID)!
+        FirebaseApp.configure()
+        let clientID = FirebaseApp.app()?.options.clientID
+
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID!)
+        GIDSignIn.sharedInstance.configuration = config
         return true
     }
 

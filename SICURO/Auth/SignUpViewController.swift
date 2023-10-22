@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTexztField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +29,14 @@ class SignUpViewController: UIViewController {
     }
     */
     @IBAction func didTapSignUp(_ sender: Any) {
+        if emailTextField.text?.isEmpty == true {
+            return
+            
+        }
+        if passwordTexztField.text?.isEmpty == true {
+            return
+        }
+        signUp()
     }
     
     @IBAction func didTapAlreadyHaveLogin(_ sender: Any) {
@@ -33,5 +44,19 @@ class SignUpViewController: UIViewController {
         let vc = storyboard.instantiateViewController(withIdentifier: "login")
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
+    }
+    
+    func signUp() {
+        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTexztField.text!) { authResult, error in
+            guard let user = authResult?.user, error == nil else {
+                print("Error \(error?.localizedDescription)")
+                return
+            }
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "Home")
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true)
+            
+        }
     }
 }
