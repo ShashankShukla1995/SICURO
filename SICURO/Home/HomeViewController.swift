@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class HomeViewController: UIViewController, CLLocationManagerDelegate {
+class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
     @IBOutlet weak var startLocationTextField: UITextField!
     @IBOutlet weak var endLocationTextField: UITextField!
@@ -16,9 +16,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var bookCabButton: UIButton!
     
     let locationManager = CLLocationManager()
+//    let searchVC = UISearchController(searchResultsController: ResultsViewController())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
+        mapView.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
@@ -55,6 +58,38 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    func createPalyLineFromSourceToDestination(sourceCord: CLLocationCoordinate2D, destinationCord: CLLocationCoordinate2D) {
+        let sourcePlaceMark = MKPlacemark(coordinate: sourceCord)
+        let destinationPlaceMark = MKPlacemark(coordinate: destinationCord)
+        
+        let sourceItem = MKMapItem(placemark: sourcePlaceMark)
+        let destinationItem = MKMapItem(placemark: destinationPlaceMark)
+        
+        let destinationRequest = MKDirections.Request()
+        destinationRequest.source = sourceItem
+        destinationRequest.destination = destinationItem
+        destinationRequest.transportType = .automobile
+        destinationRequest.requestsAlternateRoutes = false
+        
+        let directions = MKDirections(request: destinationRequest)
+        directions.calculate { response, error in
+            guard let response = response else {
+                if let error = error {
+                    print("something went wrong")
+                }
+                return
+            }
+            let route = response.routes[0]
+            self.mapView.addOverlay(route.polyline)
+            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let render = MKPolylineRenderer(overlay: overlay)
+        render.strokeColor = .blue
+        return render
+    }
     
 
 }
