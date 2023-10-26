@@ -53,11 +53,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        startLocationTextField.resignFirstResponder()
         if let text = startLocationTextField.text, !text.isEmpty {
             self.getAddress(address: text) { [weak self] locations in
                 DispatchQueue.main.async {
                     self?.locations = locations
+                    self?.searchTableView.isHidden = false
                     self?.searchTableView.reloadData()
                 }
             }
@@ -108,7 +108,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             }
             let models: [Location] = placemarks.compactMap({ places in
                 var name = ""
-                if let locationName = places.name {
+                if let locationName = places.addressDictionary?["Name"] as? String {
                     name += locationName
                 }
                 if let region = places.administrativeArea {
@@ -120,7 +120,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 if let country = places.country {
                     name += ", \(country)"
                 }
-                let result = Location(title: "", coordinate: places.location?.coordinate)
+                let result = Location(title: name, coordinate: places.location?.coordinate)
                 return result
             })
             completion(models)
