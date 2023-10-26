@@ -151,11 +151,17 @@
                                 <rect key="frame" x="16" y="93" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="didTapSource:" destination="gcg-dQ-7De" eventType="editingDidEnd" id="E8y-n8-ERg"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Destination" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ky5-VS-Lhk">
                                 <rect key="frame" x="16" y="143" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="didTapDestination:" destination="gcg-dQ-7De" eventType="editingDidEnd" id="XMU-x4-Q3Y"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4h-eF-Ap5">
                                 <rect key="frame" x="16" y="847" width="382" height="31"/>
