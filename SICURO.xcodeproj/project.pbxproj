@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5430C4242AEBE83700885485 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5430C4232AEBE83700885485 /* GoogleService-Info.plist */; };
 		8F8214DA2AE40868001CFA8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8214D92AE40868001CFA8F /* AppDelegate.swift */; };
 		8F8214DC2AE40868001CFA8F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8214DB2AE40868001CFA8F /* SceneDelegate.swift */; };
 		8F8214E12AE40868001CFA8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F8214DF2AE40868001CFA8F /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5430C4232AEBE83700885485 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F8214D62AE40868001CFA8F /* SICURO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SICURO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8214D92AE40868001CFA8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F8214DB2AE40868001CFA8F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5430C4222AEBE82500885485 /* infoAssets */ = {
+			isa = PBXGroup;
+			children = (
+				5430C4232AEBE83700885485 /* GoogleService-Info.plist */,
+			);
+			path = infoAssets;
+			sourceTree = "<group>";
+		};
 		8F8214CD2AE40868001CFA8F = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +108,7 @@
 		8F8214D82AE40868001CFA8F /* SICURO */ = {
 			isa = PBXGroup;
 			children = (
+				5430C4222AEBE82500885485 /* infoAssets */,
 				8F8214FF2AE42523001CFA8F /* Home */,
 				8F8214ED2AE40E30001CFA8F /* Auth */,
 				8F8214D92AE40868001CFA8F /* AppDelegate.swift */,
@@ -230,6 +241,7 @@
 				8F8214E32AE40869001CFA8F /* Assets.xcassets in Resources */,
 				8F8214E12AE40868001CFA8F /* Main.storyboard in Resources */,
 				8F82151C2AE55EA1001CFA8F /* GoogleMaps.bundle in Resources */,
+				5430C4242AEBE83700885485 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
