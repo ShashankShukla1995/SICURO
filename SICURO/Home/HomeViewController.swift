@@ -43,6 +43,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         super.viewDidLoad()
         locationManager.delegate = self
         view.addSubview(sourceTableView)
+        view.addSubview(destinationTableView)
         mapView.delegate = self
         sourceTableView.delegate = self
         sourceTableView.dataSource = self
@@ -64,8 +65,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         sourceTableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height-tableY)
         tableY = endLocationTextField.frame.origin.y+endLocationTextField.frame.height+5
         destinationTableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height-tableY)
-        startLocationTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
-        endLocationTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        startLocationTextField.addTarget(self, action: #selector(self.startLocationTextFieldDidChange(_:)), for: .editingChanged)
+        endLocationTextField.addTarget(self, action: #selector(self.endLocationTextFieldDidChange(_:)), for: .editingChanged)
 
     }
     
@@ -76,18 +77,32 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     @IBAction func didTapDestination(_ sender: Any) {
         self.isDestination = true
     }
+    @IBAction func didTapAddContacts(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ContactsViewController")
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
+    }
     
-    @objc func textFieldDidChange(_ textField: UITextField) {
+    @objc func startLocationTextFieldDidChange(_ textField: UITextField) {
         if let text = startLocationTextField.text, !text.isEmpty {
             self.getAddress(address: text) { [weak self] searches in
                 DispatchQueue.main.async {
                     self?.searches = searches.suffix(5).reversed()
-                    if self?.isDestination == true {
-                        self?.destinationTableView.isHidden = false
-                    } else {
-                        self?.sourceTableView.isHidden = false
-                    }
+                    self?.sourceTableView.isHidden = false
                     self?.sourceTableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    @objc func endLocationTextFieldDidChange(_ textField: UITextField) {
+        if let text = endLocationTextField.text, !text.isEmpty {
+            self.getAddress(address: text) { [weak self] searches in
+                DispatchQueue.main.async {
+                    self?.searches = searches.suffix(5).reversed()
+                    self?.destinationTableView.isHidden = false
+                    self?.destinationTableView.reloadData()
                 }
             }
         }
@@ -107,11 +122,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if !isDestination {
+        if tableView == sourceTableView {
             sourceCoordinate = self.searches[indexPath.row].placemark.coordinate
+            startLocationTextField.text = self.searches[indexPath.row].name
 //
         } else {
             destinationCoordinate = self.searches[indexPath.row].placemark.coordinate
+            endLocationTextField.text = self.searches[indexPath.row].name
         }
         if sourceCoordinate != nil && destinationCoordinate != nil {
             createPalyLineFromSourceToDestination(sourceCord: sourceCoordinate!, destinationCord: destinationCoordinate!)
@@ -196,7 +213,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         let directions = MKDirections(request: destinationRequest)
         directions.calculate { response, error in
             guard let response = response else {
-                if let error = error {
+                if error != nil {
                     print("something went wrong")
                 }
                 return

@@ -22,6 +22,8 @@
 		8F8215012AE4253B001CFA8F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8215002AE4253B001CFA8F /* HomeViewController.swift */; };
 		8F82150A2AE4B26B001CFA8F /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 8F8215092AE4B26B001CFA8F /* GoogleSignIn */; };
 		8F82150C2AE4B26B001CFA8F /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F82150B2AE4B26B001CFA8F /* GoogleSignInSwift */; };
+		8F82153F2AEC2ADA001CFA8F /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F82153E2AEC2ADA001CFA8F /* ContactsViewController.swift */; };
+		8F8215412AEC3788001CFA8F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8F8215402AEC3788001CFA8F /* FirebaseDatabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,7 @@
 		8F8215372AE55FBE001CFA8F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8F8215392AE55FCA001CFA8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8F82153B2AE55FD1001CFA8F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8F82153E2AEC2ADA001CFA8F /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,7 @@
 				8F8214FA2AE41C18001CFA8F /* FirebaseCrashlytics in Frameworks */,
 				8F82150C2AE4B26B001CFA8F /* GoogleSignInSwift in Frameworks */,
 				8F8214F62AE41C18001CFA8F /* FirebaseAuth in Frameworks */,
+				8F8215412AEC3788001CFA8F /* FirebaseDatabase in Frameworks */,
 				8F8214F82AE41C18001CFA8F /* FirebaseAuthCombine-Community in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -103,6 +107,7 @@
 		8F8214D82AE40868001CFA8F /* SICURO */ = {
 			isa = PBXGroup;
 			children = (
+				8F82153D2AEC2ABF001CFA8F /* Contacts */,
 				5430C4222AEBE82500885485 /* infoAssets */,
 				8F8214FF2AE42523001CFA8F /* Home */,
 				8F8214ED2AE40E30001CFA8F /* Auth */,
@@ -160,6 +165,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8F82153D2AEC2ABF001CFA8F /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				8F82153E2AEC2ADA001CFA8F /* ContactsViewController.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,6 +196,7 @@
 				8F8214FB2AE41C18001CFA8F /* FirebaseDatabaseSwift */,
 				8F8215092AE4B26B001CFA8F /* GoogleSignIn */,
 				8F82150B2AE4B26B001CFA8F /* GoogleSignInSwift */,
+				8F8215402AEC3788001CFA8F /* FirebaseDatabase */,
 			);
 			productName = SICURO;
 			productReference = 8F8214D62AE40868001CFA8F /* SICURO.app */;
@@ -249,6 +263,7 @@
 				8F8214DA2AE40868001CFA8F /* AppDelegate.swift in Sources */,
 				8F8214DC2AE40868001CFA8F /* SceneDelegate.swift in Sources */,
 				8F8214F12AE40E72001CFA8F /* SignUpViewController.swift in Sources */,
+				8F82153F2AEC2ADA001CFA8F /* ContactsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +533,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8F8215082AE4B26B001CFA8F /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		8F8215402AEC3788001CFA8F /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8F8214F42AE41C18001CFA8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
