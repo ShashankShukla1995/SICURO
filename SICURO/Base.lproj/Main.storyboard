@@ -122,13 +122,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="mHc-rj-M2b" id="DYe-ic-6gF"/>
                         <outlet property="googleLogin" destination="Pqr-pz-q8d" id="Hka-iv-t7Y"/>
                         <outlet property="passwordTextField" destination="HUT-ts-r8b" id="0SJ-cI-lqa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135.1145038167939" y="123.94366197183099"/>
+            <point key="canvasLocation" x="-73" y="124"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="koO-8s-4yZ">
@@ -296,7 +297,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x1H-wz-LJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528.985507246377" y="124.55357142857142"/>
+            <point key="canvasLocation" x="1761" y="124"/>
         </scene>
         <!--Contacts View Controller-->
         <scene sceneID="PdC-Nm-L0O">
@@ -516,7 +517,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zbh-RA-bhB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2423.1884057971015" y="111.83035714285714"/>
+            <point key="canvasLocation" x="2686" y="124"/>
         </scene>
     </scenes>
     <resources>
