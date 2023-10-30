@@ -19,7 +19,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+//        let imageView = UIImageView(image: UIImage(named: "background"))
+//        emailTextField.background?.cgImage = CGImage(imageView)
         googleLogin.style = .standard
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

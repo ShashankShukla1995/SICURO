@@ -13,6 +13,25 @@ struct Location {
     let coordinate: CLLocationCoordinate2D?
 }
 
+struct Steps {
+    let step: MKRoute.Step
+    let hasReachedStep: Bool
+}
+
+class PinAnatotation: NSObject, MKAnnotation {
+    var title: String?
+    var subtitle: String?
+    var coordinate: CLLocationCoordinate2D
+    
+    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D) {
+        self.title = title
+        self.subtitle = subtitle
+        self.coordinate = coordinate
+    }
+    
+    
+}
+
 class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var startLocationTextField: UITextField!
@@ -20,12 +39,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bookCabButton: UIButton!
     
+    @IBOutlet weak var navigationBar: UINavigationBar!
     let locationManager = CLLocationManager()
     var locations = [Location]()
     var searches : [MKMapItem] = []
     var sourceCoordinate: CLLocationCoordinate2D? = nil
     var destinationCoordinate: CLLocationCoordinate2D? = nil
-    var isDestination : Bool = false
+    var steps:[MKRoute.Step] = []
     let sourceTableView :UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -53,9 +73,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
         destinationTableView.dataSource = self
         destinationTableView.isHidden = true
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = 10
+        locationManager.distanceFilter = 4
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.startUpdatingLocation()
         // Do any additional setup after loading the view.
     }
@@ -71,11 +92,9 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     @IBAction func didTapSource(_ sender: Any) {
-        self.isDestination = false
     }
     
     @IBAction func didTapDestination(_ sender: Any) {
-        self.isDestination = true
     }
     @IBAction func didTapAddContacts(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -113,7 +132,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = isDestination ? destinationTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) : sourceTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView == destinationTableView ? destinationTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) : sourceTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let cellData = searches[indexPath.row].placemark
         cell.textLabel?.text = cellData.name
         cell.textLabel?.numberOfLines = 0
@@ -140,9 +159,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
-            manager.stopUpdatingLocation()
             render(location)
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        
     }
     
     func render(_ location: CLLocation) {
@@ -159,8 +181,8 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
     func getAddress(address: String, completion: @escaping (([MKMapItem]) -> Void)) {
         
         let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = startLocationTextField.text
-//        request.region = mapView.region
+        request.naturalLanguageQuery = address
+        request.region = mapView.region
         let search = MKLocalSearch(request: request)
         search.start { response, _Arg in
             guard let response = response else {
@@ -169,32 +191,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
             completion(response.mapItems)
             print(response)
         }
-//        let geoCoder = CLGeocoder()
-//        geoCoder.geocodeAddressString(address) { placemarks, error in
-//            guard let placemarks = placemarks, error == nil else {
-//                print("no location found")
-//                completion([])
-//                return
-//            }
-//            let models: [Location] = placemarks.compactMap({ places in
-//                var name = ""
-//                if let locationName = places.addressDictionary?["Name"] as? String {
-//                    name += locationName
-//                }
-//                if let region = places.administrativeArea {
-//                    name += ", \(region)"
-//                }
-//                if let locality = places.locality {
-//                    name += ", \(locality)"
-//                }
-//                if let country = places.country {
-//                    name += ", \(country)"
-//                }
-//                let result = Location(title: name, coordinate: places.location?.coordinate)
-//                return result
-//            })
-//            completion(models)
-//        }
     }
     
     func createPalyLineFromSourceToDestination(sourceCord: CLLocationCoordinate2D, destinationCord: CLLocationCoordinate2D) {
@@ -219,8 +215,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, MKMapView
                 return
             }
             let route = response.routes[0]
+            self.steps = route.steps
+            let sourcePin = PinAnatotation(title: "", subtitle: "", coordinate: sourceCord)
+            let destinationPin = PinAnatotation(title: "", subtitle: "", coordinate: destinationCord)
+            self.mapView.addAnnotation(sourcePin)
+            self.mapView.addAnnotation(destinationPin)
             self.mapView.addOverlay(route.polyline)
-            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16), animated: true)
         }
     }
     

@@ -28,6 +28,7 @@ class ContactsViewController: UIViewController {
     private let database = Database.database().reference()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         contact1Details.numberOfLines = 0
         contact2Details.numberOfLines = 0
         checkIfContactIsPresent(contact: "contact1")
