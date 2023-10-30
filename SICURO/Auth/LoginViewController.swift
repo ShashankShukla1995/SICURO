@@ -11,7 +11,6 @@ import Firebase
 import GoogleSignIn
 
 class LoginViewController: UIViewController {
-
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var googleLogin: GIDSignInButton!
@@ -29,19 +28,20 @@ class LoginViewController: UIViewController {
         checkUserInfoAndPresentHome()
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
     @IBAction func didTapLogin(_ sender: Any) {
         validateFields()
     }
+    
     @IBAction func didTapSignUp(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "signUp")
@@ -50,24 +50,23 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func didTapGoogleSignIn(_ sender: Any) {
-
         // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
-          guard error == nil else {
-            return
-          }
-
-          guard let user = result?.user,
-            let idToken = user.idToken?.tokenString
-          else {
-            return
-          }
-
-          let credential = GoogleAuthProvider.credential(withIDToken: idToken,
-                                                         accessToken: user.accessToken.tokenString)
-
+            guard error == nil else {
+                return
+            }
+            
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString
+            else {
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: user.accessToken.tokenString)
+            
             Auth.auth().signIn(with: credential) { result, error in
-
+                
                 self.checkUserInfoAndPresentHome()
             }
         }
@@ -75,26 +74,27 @@ class LoginViewController: UIViewController {
     
     
     func validateFields() {
-        if emailTextField.text?.isEmpty == true {
+        guard let emailText = emailTextField.text, emailText.isValidEmail else {
+            showAlert(message: "Email can't be empty or invalid", viewController: self)
             return
         }
-        if passwordTextField.text?.isEmpty == true {
+        
+        guard let pwdText = passwordTextField.text, !pwdText.isEmpty, pwdText.count > 8 else {
+            showAlert(message: "Password must be greater than 8 characters", viewController: self)
             return
         }
-        login()
-    }
-    
-    func login() {
-        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { [weak self] autheResult, error in
+        
+        
+        Auth.auth().signIn(withEmail: emailText, password: pwdText) { [weak self] autheResult, error in
             guard let self = self else {
                 return
             }
+            
             if error != nil {
-                let alert = UIAlertController(title: "Alert", message: "username or password is incorrect", preferredStyle: .actionSheet)
-                alert.addAction(UIAlertAction(title: "Close", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                showAlert(message: "Username or Password is incorrect", viewController: self)
                 return
             }
+            
             self.checkUserInfoAndPresentHome()
         }
     }
@@ -107,5 +107,4 @@ class LoginViewController: UIViewController {
             present(vc, animated: true)
         }
     }
-    
 }
