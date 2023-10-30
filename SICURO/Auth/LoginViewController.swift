@@ -25,30 +25,15 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         checkUserInfoAndPresentHome()
     }
     
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     @IBAction func didTapLogin(_ sender: Any) {
         validateFields()
     }
-    
-    @IBAction func didTapSignUp(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "signUp")
-        vc.modalPresentationStyle = .overFullScreen
-        present(vc, animated: true)
-    }
-    
+        
     @IBAction func didTapGoogleSignIn(_ sender: Any) {
         // Start the sign in flow!
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
@@ -66,7 +51,6 @@ class LoginViewController: UIViewController {
                                                            accessToken: user.accessToken.tokenString)
             
             Auth.auth().signIn(with: credential) { result, error in
-                
                 self.checkUserInfoAndPresentHome()
             }
         }
@@ -101,10 +85,7 @@ class LoginViewController: UIViewController {
     
     func checkUserInfoAndPresentHome() {
         if Auth.auth().currentUser != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "Home")
-            vc.modalPresentationStyle = .overFullScreen
-            present(vc, animated: true)
+            performSegue(withIdentifier: "HomePage", sender: nil)
         }
     }
 }

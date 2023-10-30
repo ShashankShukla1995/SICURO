@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XdP-46-Uti">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -27,7 +27,7 @@
                                 <rect key="frame" x="16" y="182" width="361" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f7e-0C-hV6">
                                 <rect key="frame" x="163.66666666666666" y="305" width="66" height="35"/>
@@ -42,7 +42,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
                                 <connections>
-                                    <action selector="didTapSignUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="glY-tT-HR0"/>
+                                    <segue destination="yuk-Ij-QHs" kind="show" identifier="SignupPage" id="Lhd-PU-8kI"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pqr-pz-q8d" customClass="GIDSignInButton">
@@ -77,7 +77,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HUT-ts-r8b">
                                 <rect key="frame" x="16" y="255" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you have Google account," textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rs-Qg-h4J">
                                 <rect key="frame" x="117.66666666666669" y="466" width="158" height="15"/>
@@ -121,15 +121,17 @@
                             <constraint firstItem="f7e-0C-hV6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yIZ-C8-Ixn"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="RGg-Ww-ZWs"/>
                     <connections>
                         <outlet property="emailTextField" destination="mHc-rj-M2b" id="DYe-ic-6gF"/>
                         <outlet property="googleLogin" destination="Pqr-pz-q8d" id="Hka-iv-t7Y"/>
                         <outlet property="passwordTextField" destination="HUT-ts-r8b" id="0SJ-cI-lqa"/>
+                        <segue destination="gcg-dQ-7De" kind="show" identifier="HomePage" id="mHp-bt-rRN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-73" y="124"/>
+            <point key="canvasLocation" x="852.67175572519079" y="123.94366197183099"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="koO-8s-4yZ">
@@ -142,7 +144,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P6B-f4-SYG">
                                 <rect key="frame" x="16" y="255" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVU-nV-ruo">
                                 <rect key="frame" x="154.66666666666666" y="305" width="84" height="35"/>
@@ -187,7 +189,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pMd-O6-hPr">
                                 <rect key="frame" x="16" y="182" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" textContentType="email"/>
                             </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ULw-1H-GZ3"/>
@@ -213,14 +215,16 @@
                             <constraint firstItem="Kt8-aM-yGm" firstAttribute="centerX" secondItem="fbX-qC-jAP" secondAttribute="centerX" id="x4A-rJ-zA5"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Rah-t9-JJ7"/>
                     <connections>
                         <outlet property="emailTextField" destination="pMd-O6-hPr" id="xQn-Yn-cvQ"/>
                         <outlet property="passwordTexztField" destination="P6B-f4-SYG" id="nbo-P8-aG4"/>
+                        <segue destination="gcg-dQ-7De" kind="show" identifier="HomePage" id="1jX-eQ-dzc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GxO-SZ-e7k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="856.52173913043487" y="124.55357142857142"/>
+            <point key="canvasLocation" x="2004" y="-280"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="Sqp-z2-nd3">
@@ -288,6 +292,7 @@
                             <constraint firstItem="Z4h-eF-Ap5" firstAttribute="leading" secondItem="uIy-FO-JcY" secondAttribute="leading" constant="16" id="urV-0Y-MEo"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="tOc-4f-Cl8"/>
                     <connections>
                         <outlet property="bookCabButton" destination="Z4h-eF-Ap5" id="uN3-bl-Rzf"/>
                         <outlet property="endLocationTextField" destination="Ky5-VS-Lhk" id="AOF-DI-wsQ"/>
@@ -297,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x1H-wz-LJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1761" y="124"/>
+            <point key="canvasLocation" x="2004" y="539"/>
         </scene>
         <!--Contacts View Controller-->
         <scene sceneID="PdC-Nm-L0O">
@@ -517,9 +522,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zbh-RA-bhB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2686" y="124"/>
+            <point key="canvasLocation" x="3611.450381679389" y="123.94366197183099"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ncy-2I-NXu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="XdP-46-Uti" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MEe-vO-IBF">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="xuR-2b-OEu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QA2-cu-dVx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-74.045801526717554" y="123.94366197183099"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1jX-eQ-dzc"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
