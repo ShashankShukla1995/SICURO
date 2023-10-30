@@ -13,6 +13,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTexztField: UITextField!
 
     @IBAction func didTapSignUp(_ sender: Any) {
+        view.endEditing(true)
         guard let emailText = emailTextField.text, emailText.isValidEmail else {
             showAlert(message: "Email can't be empty or invalid", viewController: self)
             return

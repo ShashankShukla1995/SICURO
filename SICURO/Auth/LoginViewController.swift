@@ -58,6 +58,7 @@ class LoginViewController: UIViewController {
     
     
     func validateFields() {
+        view.endEditing(true)
         guard let emailText = emailTextField.text, emailText.isValidEmail else {
             showAlert(message: "Email can't be empty or invalid", viewController: self)
             return
