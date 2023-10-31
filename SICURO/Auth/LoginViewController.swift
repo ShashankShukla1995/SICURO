@@ -18,8 +18,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//        let imageView = UIImageView(image: UIImage(named: "background"))
-//        emailTextField.background?.cgImage = CGImage(imageView)
+        //        let imageView = UIImageView(image: UIImage(named: "background"))
+        //        emailTextField.background?.cgImage = CGImage(imageView)
         googleLogin.style = .standard
         
     }
@@ -33,17 +33,21 @@ class LoginViewController: UIViewController {
     @IBAction func didTapLogin(_ sender: Any) {
         validateFields()
     }
-        
+    
     @IBAction func didTapGoogleSignIn(_ sender: Any) {
-        // Start the sign in flow!
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+        
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { [unowned self] result, error in
             guard error == nil else {
                 return
             }
             
-            guard let user = result?.user,
-                  let idToken = user.idToken?.tokenString
-            else {
+            guard let user = result?.user, let idToken = user.idToken?.tokenString else {
+                showAlert(message: "Issue in creating user", viewController: self)
                 return
             }
             
@@ -64,8 +68,8 @@ class LoginViewController: UIViewController {
             return
         }
         
-        guard let pwdText = passwordTextField.text, !pwdText.isEmpty, pwdText.count > 8 else {
-            showAlert(message: "Password must be greater than 8 characters", viewController: self)
+        guard let pwdText = passwordTextField.text, !pwdText.isEmpty, pwdText.count > 7 else {
+            showAlert(message: "Password must be greater than or equal to 8 characters", viewController: self)
             return
         }
         
