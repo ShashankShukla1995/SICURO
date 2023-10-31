@@ -53,7 +53,7 @@
                                     <constraint firstAttribute="height" constant="46" id="cod-9a-kzB"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="didTapGoogleSignIn:" destination="BYZ-38-t0r" eventType="valueChanged" id="qHB-at-o05"/>
+                                    <action selector="didTapGoogleSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ehh-BH-iMw"/>
                                 </connections>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpL-rW-6yQ">
@@ -230,7 +230,7 @@
         <!--Home-->
         <scene sceneID="Ivc-JM-KL1">
             <objects>
-                <tableViewController id="U7y-tz-eEU" sceneMemberID="viewController">
+                <tableViewController id="U7y-tz-eEU" customClass="HomeViewController" customModule="SICURO" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Hgi-iJ-2DF">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -313,7 +313,7 @@
         <!--Trip-->
         <scene sceneID="Sqp-z2-nd3">
             <objects>
-                <viewController storyboardIdentifier="Home" id="gcg-dQ-7De" customClass="HomeViewController" customModule="SICURO" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Home" id="gcg-dQ-7De" customClass="MapViewController" customModule="SICURO" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8NM-VD-f7I">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
