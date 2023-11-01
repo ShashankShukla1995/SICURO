@@ -96,7 +96,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "26ECAC08-86A4-4260-84C6-51A10FB2B14A - 19fff27ddbb003bf"
+                  uuid = "26ECAC08-86A4-4260-84C6-51A10FB2B14A - 19fff27ddbb0079f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -106,12 +106,12 @@
                   urlString = "file:///Users/shashankshukla/Desktop/SICURO/SICURO/View%20Controller/Home/MapViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "253"
-                  endingLineNumber = "253"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
                   offsetFromSymbolStart = "314">
                </Location>
                <Location
-                  uuid = "26ECAC08-86A4-4260-84C6-51A10FB2B14A - 19fff27ddbb003bf"
+                  uuid = "26ECAC08-86A4-4260-84C6-51A10FB2B14A - 19fff27ddbb0079f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -121,8 +121,8 @@
                   urlString = "file:///Users/shashankshukla/Desktop/SICURO/SICURO/View%20Controller/Home/MapViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "253"
-                  endingLineNumber = "253"
+                  startingLineNumber = "221"
+                  endingLineNumber = "221"
                   offsetFromSymbolStart = "420">
                </Location>
             </Locations>
@@ -131,16 +131,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9536F175-6C43-4535-A475-6A99A11DDBE2"
+            uuid = "661504BD-A828-45A2-B767-2BF8D8F86833"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SICURO/Custom/UserManager.swift"
+            filePath = "SICURO/View Controller/Contacts/ContactsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "addContact(contact:email:)"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1117BFC6-A937-4F57-9E2E-958C556CBFD5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SICURO/View Controller/Contacts/ContactsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

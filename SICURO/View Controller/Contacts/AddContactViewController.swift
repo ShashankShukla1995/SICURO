@@ -32,5 +32,6 @@ class AddContactViewController: UIViewController {
         if let name = nameTextField.text, let email = emailTextField.text, email.isValidEmail {
             UserManager.shared.addContact(contact: Contact(email: email, name: name), email: UserManager.shared.getCharactersBeforeAt())
         }
+        UserManager.shared.getContact()
     }
 }

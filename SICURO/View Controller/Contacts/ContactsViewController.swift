@@ -18,8 +18,18 @@ class ContactsViewController: UIViewController {
     }()
     
     private let database = Database.database().reference()
+    var users: [String: [[String : String]]]? =  [String: [[String : String]]]()
+    var user: [[String : String]]? = [[String : String]]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.users = UserManager.shared.allUsers
+        if let keys = users?.keys {
+            if (keys.contains(UserManager.shared.getCharactersBeforeAt())) {
+                self.user = self.users?[UserManager.shared.getCharactersBeforeAt()]
+            }
+        }
         self.contactsTableView.delegate = self
         self.contactsTableView.dataSource = self
         self.view.addSubview(contactsTableView)
@@ -31,7 +41,7 @@ class ContactsViewController: UIViewController {
 
 extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        return user?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -42,8 +52,11 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = contactsTableView.dequeueReusableCell(withIdentifier: "ContactsTableViewCell", for: indexPath) as? ContactsTableViewCell else {
             return UITableViewCell()
         }
-        cell.titleLabel?.text = "First"
-        cell.subTitleLabel.text = "First"
+        guard let name = user?[indexPath.row]["name"], let email = user?[indexPath.row]["email"] else {
+            return UITableViewCell()
+        }
+        cell.titleLabel?.text = name
+        cell.subTitleLabel.text = email
         return cell
     }
     
