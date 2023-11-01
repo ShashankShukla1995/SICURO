@@ -12,6 +12,8 @@ import FirebaseAuth
 class UserManager: NSObject {
     static let shared = UserManager()
     private let database = Database.database().reference()
+    var allUsers: [String: [String : String]]? = [String: [String : String]]()
+    
     
     var user: User!
     func addContact(contact:Contact, email: String) {
@@ -19,12 +21,14 @@ class UserManager: NSObject {
         database.child(email).setValue(object)
     }
     
-    func getContact(email: String, completion: ([Contact]) -> Void) {
+    func getContact() {
         database.observeSingleEvent(of: .value) { snapshot in
-//            guard let value = snapshot.value(forKey: email) else {
-//                return
-//            }
-//            let contacts = snapshot.value(forKey: email)
+            
+            guard let value = snapshot.value else {
+                return
+            }
+        
+            self.allUsers = value as? [String: [String : String]]
         }
     }
     

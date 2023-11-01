@@ -24,8 +24,6 @@ class ContactsViewController: UIViewController {
         self.contactsTableView.dataSource = self
         self.view.addSubview(contactsTableView)
         contactsTableView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height-20)
-        UserManager.shared.getContact(email: "contact1") { contact in
-        }
         // Do any additional setup after loading the view.
     }
 }

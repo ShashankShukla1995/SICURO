@@ -47,7 +47,7 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     var stepCounter = 0
     var route: MKRoute?
     var showMapRoute = false
-    var navigationStarted = false
+    var isOnRoute = true
     let sourceTableView :UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -101,19 +101,10 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func didTapStartTracking(_ sender: Any) {
-        if !navigationStarted {
-            showMapRoute = true
-            if let location = locationManager.location {
-                render(location)
-            }
-        } else {
-            if let route = route {
-                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16) , animated: true)
-                self.steps.removeAll()
-                self.stepCounter = 0
-            }
+        showMapRoute = true
+        if let location = locationManager.location {
+            render(location)
         }
-        navigationStarted.toggle()
     }
     
     
@@ -255,6 +246,9 @@ extension MapViewController: UITableViewDelegate, UITableViewDataSource {
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if !isOnRoute {
+            showAlert(message: "user moved out of route", viewController: self)
+        }
         if !showMapRoute {
             if let location = locations.first {
                 render(location)
@@ -263,10 +257,11 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        
+        isOnRoute = false
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        isOnRoute = true
         stepCounter += 1
         if stepCounter < steps.count {
             
