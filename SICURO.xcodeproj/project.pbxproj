@@ -28,6 +28,11 @@
 		8F82150C2AE4B26B001CFA8F /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8F82150B2AE4B26B001CFA8F /* GoogleSignInSwift */; };
 		8F82153F2AEC2ADA001CFA8F /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F82153E2AEC2ADA001CFA8F /* ContactsViewController.swift */; };
 		8F8215412AEC3788001CFA8F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 8F8215402AEC3788001CFA8F /* FirebaseDatabase */; };
+		8F8215452AF19F5E001CFA8F /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8215442AF19F5E001CFA8F /* UserManager.swift */; };
+		8F8215472AF1A479001CFA8F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8215462AF1A479001CFA8F /* User.swift */; };
+		8F82154D2AF1ADE6001CFA8F /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F82154B2AF1ADE6001CFA8F /* ContactsTableViewCell.swift */; };
+		8F82154E2AF1ADE6001CFA8F /* ContactsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F82154C2AF1ADE6001CFA8F /* ContactsTableViewCell.xib */; };
+		8F8215502AF1FCB2001CFA8F /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F82154F2AF1FCB2001CFA8F /* AddContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +72,11 @@
 		8F8215392AE55FCA001CFA8F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8F82153B2AE55FD1001CFA8F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8F82153E2AEC2ADA001CFA8F /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		8F8215442AF19F5E001CFA8F /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		8F8215462AF1A479001CFA8F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8F82154B2AF1ADE6001CFA8F /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		8F82154C2AF1ADE6001CFA8F /* ContactsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactsTableViewCell.xib; sourceTree = "<group>"; };
+		8F82154F2AF1FCB2001CFA8F /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +103,8 @@
 				45AFA75E2AEFBC7700CE3D8A /* String+Extension.swift */,
 				45AFA7632AEFC45900CE3D8A /* CustomTextField.swift */,
 				45AFA7602AEFBD9100CE3D8A /* Utility.swift */,
+				8F8215442AF19F5E001CFA8F /* UserManager.swift */,
+				8F8215462AF1A479001CFA8F /* User.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -125,13 +137,12 @@
 		8F8214D82AE40868001CFA8F /* SICURO */ = {
 			isa = PBXGroup;
 			children = (
-				8F82153D2AEC2ABF001CFA8F /* Contacts */,
+				8F8215492AF1AD5F001CFA8F /* View Controller */,
+				8F8215482AF1AD51001CFA8F /* Views */,
+				45AFA7622AEFC37100CE3D8A /* Custom */,
 				5430C4222AEBE82500885485 /* infoAssets */,
-				8F8214FF2AE42523001CFA8F /* Home */,
-				8F8214ED2AE40E30001CFA8F /* Auth */,
 				8F8214D92AE40868001CFA8F /* AppDelegate.swift */,
 				8F8214DB2AE40868001CFA8F /* SceneDelegate.swift */,
-				45AFA7622AEFC37100CE3D8A /* Custom */,
 				8F8214DF2AE40868001CFA8F /* Main.storyboard */,
 				8F8214E22AE40869001CFA8F /* Assets.xcassets */,
 				8F8214E42AE40869001CFA8F /* LaunchScreen.storyboard */,
@@ -189,8 +200,36 @@
 			isa = PBXGroup;
 			children = (
 				8F82153E2AEC2ADA001CFA8F /* ContactsViewController.swift */,
+				8F82154F2AF1FCB2001CFA8F /* AddContactViewController.swift */,
 			);
 			path = Contacts;
+			sourceTree = "<group>";
+		};
+		8F8215482AF1AD51001CFA8F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8F82154A2AF1ADA8001CFA8F /* TableViewCells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8F8215492AF1AD5F001CFA8F /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8F8214ED2AE40E30001CFA8F /* Auth */,
+				8F8214FF2AE42523001CFA8F /* Home */,
+				8F82153D2AEC2ABF001CFA8F /* Contacts */,
+			);
+			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		8F82154A2AF1ADA8001CFA8F /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				8F82154B2AF1ADE6001CFA8F /* ContactsTableViewCell.swift */,
+				8F82154C2AF1ADE6001CFA8F /* ContactsTableViewCell.xib */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +307,7 @@
 				8F8214E32AE40869001CFA8F /* Assets.xcassets in Resources */,
 				8F8214E12AE40868001CFA8F /* Main.storyboard in Resources */,
 				5430C4242AEBE83700885485 /* GoogleService-Info.plist in Resources */,
+				8F82154E2AF1ADE6001CFA8F /* ContactsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,11 +322,15 @@
 				45AFA75F2AEFBC7700CE3D8A /* String+Extension.swift in Sources */,
 				8F8214EF2AE40E5D001CFA8F /* LoginViewController.swift in Sources */,
 				8F8214DA2AE40868001CFA8F /* AppDelegate.swift in Sources */,
+				8F82154D2AF1ADE6001CFA8F /* ContactsTableViewCell.swift in Sources */,
 				45AFA7612AEFBD9100CE3D8A /* Utility.swift in Sources */,
 				45B210CB2AF16FDC00778472 /* HomeViewController.swift in Sources */,
 				8F8214DC2AE40868001CFA8F /* SceneDelegate.swift in Sources */,
 				8F8214F12AE40E72001CFA8F /* SignUpViewController.swift in Sources */,
+				8F8215502AF1FCB2001CFA8F /* AddContactViewController.swift in Sources */,
+				8F8215472AF1A479001CFA8F /* User.swift in Sources */,
 				8F82153F2AEC2ADA001CFA8F /* ContactsViewController.swift in Sources */,
+				8F8215452AF19F5E001CFA8F /* UserManager.swift in Sources */,
 				45AFA7642AEFC45900CE3D8A /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

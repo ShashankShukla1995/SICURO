@@ -31,9 +31,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "219"
-            endingLineNumber = "219"
-            landmarkName = "createPalyLineFromSourceToDestination(sourceCord:destinationCord:)"
-            landmarkType = "7">
+            endingLineNumber = "219">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -47,41 +45,23 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
+            endingLineNumber = "161">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB174863-54E0-4D50-A750-1940088D7AD9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SICURO/Custom/UserManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "addContact(contact:email:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "84451DA5-3DE4-4AF1-BF60-4DE15BC41F16 - 89a2c12f2bda3fb1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SICURO.HomeViewController.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
-                  moduleName = "SICURO"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shashankshukla/Desktop/SICURO/SICURO/Home/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "161"
-                  endingLineNumber = "161"
-                  offsetFromSymbolStart = "106">
-               </Location>
-               <Location
-                  uuid = "84451DA5-3DE4-4AF1-BF60-4DE15BC41F16 - 89a2c12f2bda3fb1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SICURO.HomeViewController.locationManager(_: __C.CLLocationManager, didUpdateLocations: Swift.Array&lt;__C.CLLocation&gt;) -&gt; ()"
-                  moduleName = "SICURO"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shashankshukla/Desktop/SICURO/SICURO/Home/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "161"
-                  endingLineNumber = "161"
-                  offsetFromSymbolStart = "191">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
