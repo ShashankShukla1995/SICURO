@@ -32,7 +32,6 @@ class PinAnatotation: NSObject, MKAnnotation {
 
 class MapViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var startLocationTextField: UITextField!
     @IBOutlet weak var endLocationTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bookCabButton: UIButton!
@@ -48,11 +47,6 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     var route: MKRoute?
     var showMapRoute = false
     var isOnRoute = true
-    let sourceTableView :UITableView = {
-        let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        return table
-    }()
     
     let destinationTableView :UITableView = {
         let table = UITableView()
@@ -64,13 +58,9 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager.delegate = self
-        view.addSubview(sourceTableView)
         view.addSubview(destinationTableView)
         mapView.delegate = self
         mapView.showsUserLocation = true
-        sourceTableView.delegate = self
-        sourceTableView.dataSource = self
-        sourceTableView.isHidden = true
         
         destinationTableView.delegate = self
         destinationTableView.dataSource = self
@@ -85,11 +75,8 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        var tableY = startLocationTextField.frame.origin.y+startLocationTextField.frame.height+5
-        sourceTableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height-tableY)
-        tableY = endLocationTextField.frame.origin.y+endLocationTextField.frame.height+5
+        let tableY = endLocationTextField.frame.origin.y+endLocationTextField.frame.height+5
         destinationTableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height-tableY)
-        startLocationTextField.addTarget(self, action: #selector(self.startLocationTextFieldDidChange(_:)), for: .editingChanged)
         endLocationTextField.addTarget(self, action: #selector(self.endLocationTextFieldDidChange(_:)), for: .editingChanged)
 
     }
@@ -104,19 +91,6 @@ class MapViewController: UIViewController, UITextFieldDelegate {
         showMapRoute = true
         if let location = locationManager.location {
             render(location)
-        }
-    }
-    
-    
-    @objc func startLocationTextFieldDidChange(_ textField: UITextField) {
-        if let text = startLocationTextField.text, !text.isEmpty {
-            self.getAddress(address: text) { [weak self] searches in
-                DispatchQueue.main.async {
-                    self?.searches = searches.suffix(5).reversed()
-                    self?.sourceTableView.isHidden = false
-                    self?.sourceTableView.reloadData()
-                }
-            }
         }
     }
     
@@ -215,7 +189,7 @@ extension MapViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView == destinationTableView ? destinationTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) : sourceTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = destinationTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let cellData = searches[indexPath.row].placemark
         cell.textLabel?.text = cellData.name
         cell.textLabel?.numberOfLines = 0
@@ -224,20 +198,14 @@ extension MapViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if tableView == sourceTableView {
-            
-//
-        } else {
-            destinationCoordinate = self.searches[indexPath.row].placemark.coordinate
-            endLocationTextField.text = self.searches[indexPath.row].name
-        }
+        destinationCoordinate = self.searches[indexPath.row].placemark.coordinate
+        endLocationTextField.text = self.searches[indexPath.row].name
         sourceCoordinate = locationManager.location?.coordinate
         if sourceCoordinate != nil && destinationCoordinate != nil {
             showMapRoute = true
             createPalyLineFromSourceToDestination(sourceCord: sourceCoordinate!, destinationCord: destinationCoordinate!)
         }
         self.destinationTableView.isHidden = true
-        self.sourceTableView.isHidden = true
         //notify
     }
 }

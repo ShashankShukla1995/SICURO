@@ -317,16 +317,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="source" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="syr-VZ-poy">
-                                <rect key="frame" x="16" y="98" width="382" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="didTapSource:" destination="gcg-dQ-7De" eventType="editingDidEnd" id="E8y-n8-ERg"/>
-                                </connections>
-                            </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Destination" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ky5-VS-Lhk">
-                                <rect key="frame" x="16" y="148" width="382" height="34"/>
+                                <rect key="frame" x="16" y="104" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -342,7 +334,7 @@
                                 </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5aP-AA-haf">
-                                <rect key="frame" x="16" y="198" width="382" height="609"/>
+                                <rect key="frame" x="16" y="154" width="382" height="653"/>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uIy-FO-JcY"/>
@@ -350,12 +342,9 @@
                         <constraints>
                             <constraint firstItem="5aP-AA-haf" firstAttribute="top" secondItem="Ky5-VS-Lhk" secondAttribute="bottom" constant="16" id="1Xx-ng-bxd"/>
                             <constraint firstItem="5aP-AA-haf" firstAttribute="leading" secondItem="uIy-FO-JcY" secondAttribute="leading" constant="16" id="3uX-cu-C5B"/>
-                            <constraint firstItem="uIy-FO-JcY" firstAttribute="trailing" secondItem="syr-VZ-poy" secondAttribute="trailing" constant="16" id="CAH-Et-lvj"/>
-                            <constraint firstItem="syr-VZ-poy" firstAttribute="top" secondItem="uIy-FO-JcY" secondAttribute="top" constant="10" id="DlL-eG-hw4"/>
-                            <constraint firstItem="syr-VZ-poy" firstAttribute="leading" secondItem="uIy-FO-JcY" secondAttribute="leading" constant="16" id="Duk-6E-aQC"/>
+                            <constraint firstItem="Ky5-VS-Lhk" firstAttribute="top" secondItem="uIy-FO-JcY" secondAttribute="top" constant="16" id="FLI-4O-wx9"/>
                             <constraint firstItem="Z4h-eF-Ap5" firstAttribute="centerX" secondItem="8NM-VD-f7I" secondAttribute="centerX" id="G2R-6L-1M1"/>
                             <constraint firstItem="uIy-FO-JcY" firstAttribute="trailing" secondItem="5aP-AA-haf" secondAttribute="trailing" constant="16" id="Ofe-f7-jFr"/>
-                            <constraint firstItem="Ky5-VS-Lhk" firstAttribute="top" secondItem="syr-VZ-poy" secondAttribute="bottom" constant="16" id="YDC-gA-dne"/>
                             <constraint firstItem="uIy-FO-JcY" firstAttribute="trailing" secondItem="Ky5-VS-Lhk" secondAttribute="trailing" constant="16" id="bdf-cp-CjW"/>
                             <constraint firstItem="Z4h-eF-Ap5" firstAttribute="top" secondItem="5aP-AA-haf" secondAttribute="bottom" constant="16" id="iXy-pp-DaH"/>
                             <constraint firstItem="Ky5-VS-Lhk" firstAttribute="leading" secondItem="uIy-FO-JcY" secondAttribute="leading" constant="16" id="mFg-ld-p9x"/>
@@ -367,7 +356,6 @@
                         <outlet property="bookCabButton" destination="Z4h-eF-Ap5" id="uN3-bl-Rzf"/>
                         <outlet property="endLocationTextField" destination="Ky5-VS-Lhk" id="AOF-DI-wsQ"/>
                         <outlet property="mapView" destination="5aP-AA-haf" id="4uf-82-Hdz"/>
-                        <outlet property="startLocationTextField" destination="syr-VZ-poy" id="LbC-oX-I5g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x1H-wz-LJF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

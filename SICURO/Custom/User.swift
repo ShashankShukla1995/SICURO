@@ -7,6 +7,7 @@
 
 import Foundation
 struct User: Codable {
+    let uid: String
     let contact: [Contact]
 }
 
