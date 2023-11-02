@@ -257,25 +257,8 @@
                                             <segue destination="SND-7S-tXE" kind="show" id="q1k-Te-GrM"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="auS-Oj-87B" style="IBUITableViewCellStyleDefault" id="Rye-NG-xWP">
-                                        <rect key="frame" x="0.0" y="104.5" width="414" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rye-NG-xWP" id="TFi-T5-Q9D">
-                                            <rect key="frame" x="0.0" y="0.0" width="385.5" height="60"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Add New Contact" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="auS-Oj-87B">
-                                                    <rect key="frame" x="20" y="0.0" width="357.5" height="60"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="0rY-kb-pQs" style="IBUITableViewCellStyleDefault" id="wIz-bZ-HcD">
-                                        <rect key="frame" x="0.0" y="164.5" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="104.5" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wIz-bZ-HcD" id="Dh7-uF-KVz">
                                             <rect key="frame" x="0.0" y="0.0" width="385.5" height="60"/>
@@ -321,31 +304,40 @@
                                 <rect key="frame" x="16" y="104" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="didTapDestination:" destination="gcg-dQ-7De" eventType="editingDidEnd" id="XMU-x4-Q3Y"/>
-                                </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsy-5V-ExA">
+                                <rect key="frame" x="20" y="823" width="93" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Add Image"/>
+                                <connections>
+                                    <action selector="didTapAddImage:" destination="gcg-dQ-7De" eventType="touchUpInside" id="S5U-4c-6Ho"/>
+                                </connections>
+                            </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5aP-AA-haf">
+                                <rect key="frame" x="16" y="154" width="382" height="653"/>
+                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4h-eF-Ap5">
-                                <rect key="frame" x="149.5" y="823" width="115" height="31"/>
+                                <rect key="frame" x="279" y="823" width="115" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Start Tracking"/>
                                 <connections>
                                     <action selector="didTapStartTracking:" destination="gcg-dQ-7De" eventType="touchUpInside" id="FJW-mt-V4Q"/>
                                 </connections>
                             </button>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5aP-AA-haf">
-                                <rect key="frame" x="16" y="154" width="382" height="653"/>
-                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uIy-FO-JcY"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5aP-AA-haf" firstAttribute="top" secondItem="Ky5-VS-Lhk" secondAttribute="bottom" constant="16" id="1Xx-ng-bxd"/>
                             <constraint firstItem="5aP-AA-haf" firstAttribute="leading" secondItem="uIy-FO-JcY" secondAttribute="leading" constant="16" id="3uX-cu-C5B"/>
+                            <constraint firstItem="uIy-FO-JcY" firstAttribute="trailing" secondItem="Z4h-eF-Ap5" secondAttribute="trailing" constant="20" id="8Dx-Dh-TVD"/>
+                            <constraint firstItem="nsy-5V-ExA" firstAttribute="leading" secondItem="uIy-FO-JcY" secondAttribute="leading" constant="20" id="AjP-yu-sWO"/>
                             <constraint firstItem="Ky5-VS-Lhk" firstAttribute="top" secondItem="uIy-FO-JcY" secondAttribute="top" constant="16" id="FLI-4O-wx9"/>
-                            <constraint firstItem="Z4h-eF-Ap5" firstAttribute="centerX" secondItem="8NM-VD-f7I" secondAttribute="centerX" id="G2R-6L-1M1"/>
+                            <constraint firstItem="uIy-FO-JcY" firstAttribute="bottom" secondItem="nsy-5V-ExA" secondAttribute="bottom" constant="8" id="LXn-vy-bhx"/>
                             <constraint firstItem="uIy-FO-JcY" firstAttribute="trailing" secondItem="5aP-AA-haf" secondAttribute="trailing" constant="16" id="Ofe-f7-jFr"/>
                             <constraint firstItem="uIy-FO-JcY" firstAttribute="trailing" secondItem="Ky5-VS-Lhk" secondAttribute="trailing" constant="16" id="bdf-cp-CjW"/>
+                            <constraint firstItem="nsy-5V-ExA" firstAttribute="top" secondItem="5aP-AA-haf" secondAttribute="bottom" constant="16" id="c9q-nV-EUx"/>
+                            <constraint firstItem="uIy-FO-JcY" firstAttribute="trailing" secondItem="nsy-5V-ExA" secondAttribute="trailing" constant="301" id="eNO-mP-ebc"/>
                             <constraint firstItem="Z4h-eF-Ap5" firstAttribute="top" secondItem="5aP-AA-haf" secondAttribute="bottom" constant="16" id="iXy-pp-DaH"/>
                             <constraint firstItem="Ky5-VS-Lhk" firstAttribute="leading" secondItem="uIy-FO-JcY" secondAttribute="leading" constant="16" id="mFg-ld-p9x"/>
                             <constraint firstAttribute="bottomMargin" secondItem="Z4h-eF-Ap5" secondAttribute="bottom" constant="8" id="s7R-4x-5yB"/>

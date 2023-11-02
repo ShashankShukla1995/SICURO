@@ -18,25 +18,12 @@ struct Steps {
     let hasReachedStep: Bool
 }
 
-class PinAnatotation: NSObject, MKAnnotation {
-    var title: String?
-    var subtitle: String?
-    var coordinate: CLLocationCoordinate2D
-    
-    init(title: String, subtitle: String, coordinate: CLLocationCoordinate2D) {
-        self.title = title
-        self.subtitle = subtitle
-        self.coordinate = coordinate
-    }
-}
-
 class MapViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var endLocationTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bookCabButton: UIButton!
     
-    @IBOutlet weak var navigationBar: UINavigationBar!
     let locationManager = CLLocationManager()
     var locations = [Location]()
     var searches : [MKMapItem] = []
@@ -53,7 +40,6 @@ class MapViewController: UIViewController, UITextFieldDelegate {
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         return table
     }()
-//    let searchVC = UISearchController(searchResultsController: ResultsViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,10 +67,11 @@ class MapViewController: UIViewController, UITextFieldDelegate {
 
     }
     
-    @IBAction func didTapSource(_ sender: Any) {
-    }
-    
-    @IBAction func didTapDestination(_ sender: Any) {
+    @IBAction func didTapAddImage(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.delegate = self
+        present(picker, animated: true)
     }
     
     @IBAction func didTapStartTracking(_ sender: Any) {
@@ -176,9 +163,6 @@ class MapViewController: UIViewController, UITextFieldDelegate {
         
         stepCounter += 1
     }
-   
-    
-
 }
 
 
@@ -246,5 +230,17 @@ extension MapViewController: MKMapViewDelegate {
         render.strokeColor = .blue
         return render
     }
+}
+
+extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        UserManager.shared.image.append(image)
+    }
+    
 }
     

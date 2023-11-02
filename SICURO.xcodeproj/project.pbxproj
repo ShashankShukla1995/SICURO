@@ -482,6 +482,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SICURO/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "to capture image";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "need to use the location to navigate";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "need to use the location to navigate";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -512,6 +513,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SICURO/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "to capture image";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "need to use the location to navigate";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "need to use the location to navigate";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
