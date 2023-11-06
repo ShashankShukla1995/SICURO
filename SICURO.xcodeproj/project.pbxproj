@@ -109,12 +109,12 @@
 			path = Custom;
 			sourceTree = "<group>";
 		};
-		5430C4222AEBE82500885485 /* infoAssets */ = {
+		5430C4222AEBE82500885485 /* InfoAssets */ = {
 			isa = PBXGroup;
 			children = (
 				5430C4232AEBE83700885485 /* GoogleService-Info.plist */,
 			);
-			path = infoAssets;
+			path = InfoAssets;
 			sourceTree = "<group>";
 		};
 		8F8214CD2AE40868001CFA8F = {
@@ -140,7 +140,7 @@
 				8F8215492AF1AD5F001CFA8F /* View Controller */,
 				8F8215482AF1AD51001CFA8F /* Views */,
 				45AFA7622AEFC37100CE3D8A /* Custom */,
-				5430C4222AEBE82500885485 /* infoAssets */,
+				5430C4222AEBE82500885485 /* InfoAssets */,
 				8F8214D92AE40868001CFA8F /* AppDelegate.swift */,
 				8F8214DB2AE40868001CFA8F /* SceneDelegate.swift */,
 				8F8214DF2AE40868001CFA8F /* Main.storyboard */,
