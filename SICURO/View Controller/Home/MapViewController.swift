@@ -19,7 +19,7 @@ struct Steps {
 }
 
 class MapViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var endLocationTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bookCabButton: UIButton!
@@ -35,6 +35,7 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     var route: MKRoute?
     var showMapRoute = false
     var isOnRoute = true
+    var isAuthorized = false
     
     let destinationTableView :UITableView = {
         let table = UITableView()
@@ -65,7 +66,7 @@ class MapViewController: UIViewController, UITextFieldDelegate {
         let tableY = endLocationTextField.frame.origin.y+endLocationTextField.frame.height+5
         destinationTableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height-tableY)
         endLocationTextField.addTarget(self, action: #selector(self.endLocationTextFieldDidChange(_:)), for: .editingChanged)
-
+        
     }
     
     @IBAction func didTapAddImage(_ sender: Any) {
@@ -115,7 +116,9 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func didTapStartTracking(_ sender: Any) {
+        self.bookCabButton.isUserInteractionEnabled = false
         showMapRoute = true
+        checkForPermission()
         if let location = locationManager.location {
             render(location)
         }
@@ -131,6 +134,46 @@ class MapViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+    }
+    
+    func checkForPermission() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                self.isAuthorized = true
+            case .denied:
+                return
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+                    if didAllow {
+                        self.isAuthorized = true
+                    }
+                }
+            default: return
+            }
+        }
+    }
+    
+    func dispatchNotification() {
+        let identifier = "deviation-in-route-notification"
+        let title = "Going out of route"
+        let body = "you are going out of the selected route"
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+        
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date())
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        notificationCenter.add(request)
+        
     }
     
     
@@ -240,6 +283,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if !isOnRoute {
             showAlert(message: "user moved out of route", viewController: self)
+            self.dispatchNotification()
         }
         if !showMapRoute {
             if let location = locations.first {
@@ -283,4 +327,4 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
     }
     
 }
-    
+
