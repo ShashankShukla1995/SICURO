@@ -13,7 +13,7 @@ class UserManager: NSObject {
     static let shared = UserManager()
     private let database = Database.database().reference()
     var allUsers: [String: [[String : String]]]? =  [String: [[String : String]]]()
-    var image: [UIImage] = [UIImage]()
+    var image: [String : UIImage] = [String : UIImage]()
 
     
     

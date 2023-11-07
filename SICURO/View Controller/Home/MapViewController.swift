@@ -68,13 +68,6 @@ class MapViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func didTapAddImage(_ sender: Any) {
-        let picker = UIImagePickerController()
-        picker.sourceType = .camera
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-    
     @IBAction func didTapStartTracking(_ sender: Any) {
         self.bookCabButton.isUserInteractionEnabled = false
         showMapRoute = true
@@ -274,17 +267,5 @@ extension MapViewController: MKMapViewDelegate {
         render.strokeColor = .blue
         return render
     }
-}
-
-extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            return
-        }
-        UserManager.shared.image.append(image)
-    }
-    
 }
 
