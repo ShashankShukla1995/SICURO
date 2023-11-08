@@ -69,53 +69,53 @@ class MapViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @IBAction func didTapAddImage(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
-                self.openCamera()
-            }))
-            
-            alert.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: { _ in
-                self.openGallary()
-            }))
-            
-            alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-        
-            self.present(alert, animated: true, completion: nil)
+//    @IBAction func didTapAddImage(_ sender: Any) {
+//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//            alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
+//                self.openCamera()
+//            }))
+//
+//            alert.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: { _ in
+//                self.openGallary()
+//            }))
+//
+//            alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+//
+//            self.present(alert, animated: true, completion: nil)
         
 //        let picker = UIImagePickerController()
 //        picker.sourceType = .camera
 //        picker.delegate = self
 //        present(picker, animated: true)
-    }
+//    }
     
     /// Open the camera
-    func openCamera() {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera)){
-            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-            //If you dont want to edit the photo then you can set allowsEditing to false
-            imagePicker.allowsEditing = true
-            imagePicker.delegate = self
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        else{
-            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
+//    func openCamera() {
+//        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera)){
+//            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+//            //If you dont want to edit the photo then you can set allowsEditing to false
+//            imagePicker.allowsEditing = true
+//            imagePicker.delegate = self
+//            self.present(imagePicker, animated: true, completion: nil)
+//        }
+//        else{
+//            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//    }
 
     /// Choose image from camera roll
-    func openGallary() {
-        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-        // If you don't want to edit the photo then you can set allowsEditing to false
-        imagePicker.allowsEditing = true
-        imagePicker.delegate = self
-        self.present(imagePicker, animated: true, completion: nil)
-    }
+//    func openGallary() {
+//        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+//        // If you don't want to edit the photo then you can set allowsEditing to false
+//        imagePicker.allowsEditing = true
+//        imagePicker.delegate = self
+//        self.present(imagePicker, animated: true, completion: nil)
+//    }
     
     
-    @IBAction func didTapStartTracking(_ sender: Any) {
+    @IBAction func e(_ sender: Any) {
         self.bookCabButton.isUserInteractionEnabled = false
         showMapRoute = true
         checkForPermission()
@@ -314,17 +314,5 @@ extension MapViewController: MKMapViewDelegate {
         render.strokeColor = .blue
         return render
     }
-}
-
-extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            return
-        }
-        UserManager.shared.image.append(image)
-    }
-    
 }
 
