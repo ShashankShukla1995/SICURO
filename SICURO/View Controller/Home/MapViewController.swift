@@ -19,7 +19,7 @@ struct Steps {
 }
 
 class MapViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var endLocationTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var bookCabButton: UIButton!
@@ -35,6 +35,7 @@ class MapViewController: UIViewController, UITextFieldDelegate {
     var route: MKRoute?
     var showMapRoute = false
     var isOnRoute = true
+    var isAuthorized = false
     
     let destinationTableView :UITableView = {
         let table = UITableView()
@@ -65,57 +66,59 @@ class MapViewController: UIViewController, UITextFieldDelegate {
         let tableY = endLocationTextField.frame.origin.y+endLocationTextField.frame.height+5
         destinationTableView.frame = CGRect(x: 0, y: tableY, width: view.frame.size.width, height: view.frame.size.height-tableY)
         endLocationTextField.addTarget(self, action: #selector(self.endLocationTextFieldDidChange(_:)), for: .editingChanged)
-
+        
     }
     
-    @IBAction func didTapAddImage(_ sender: Any) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
-                self.openCamera()
-            }))
-            
-            alert.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: { _ in
-                self.openGallary()
-            }))
-            
-            alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-        
-            self.present(alert, animated: true, completion: nil)
+//    @IBAction func didTapAddImage(_ sender: Any) {
+//        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+//            alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
+//                self.openCamera()
+//            }))
+//
+//            alert.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: { _ in
+//                self.openGallary()
+//            }))
+//
+//            alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+//
+//            self.present(alert, animated: true, completion: nil)
         
 //        let picker = UIImagePickerController()
 //        picker.sourceType = .camera
 //        picker.delegate = self
 //        present(picker, animated: true)
-    }
+//    }
     
     /// Open the camera
-    func openCamera() {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera)){
-            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-            //If you dont want to edit the photo then you can set allowsEditing to false
-            imagePicker.allowsEditing = true
-            imagePicker.delegate = self
-            self.present(imagePicker, animated: true, completion: nil)
-        }
-        else{
-            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
+//    func openCamera() {
+//        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera)){
+//            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+//            //If you dont want to edit the photo then you can set allowsEditing to false
+//            imagePicker.allowsEditing = true
+//            imagePicker.delegate = self
+//            self.present(imagePicker, animated: true, completion: nil)
+//        }
+//        else{
+//            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
+//        }
+//    }
 
     /// Choose image from camera roll
-    func openGallary() {
-        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
-        // If you don't want to edit the photo then you can set allowsEditing to false
-        imagePicker.allowsEditing = true
-        imagePicker.delegate = self
-        self.present(imagePicker, animated: true, completion: nil)
-    }
+//    func openGallary() {
+//        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+//        // If you don't want to edit the photo then you can set allowsEditing to false
+//        imagePicker.allowsEditing = true
+//        imagePicker.delegate = self
+//        self.present(imagePicker, animated: true, completion: nil)
+//    }
     
     
-    @IBAction func didTapStartTracking(_ sender: Any) {
+    @IBAction func e(_ sender: Any) {
+        self.bookCabButton.isUserInteractionEnabled = false
         showMapRoute = true
+        checkForPermission()
         if let location = locationManager.location {
             render(location)
         }
@@ -131,6 +134,46 @@ class MapViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+    }
+    
+    func checkForPermission() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                self.isAuthorized = true
+            case .denied:
+                return
+            case .notDetermined:
+                notificationCenter.requestAuthorization(options: [.alert, .sound]) { didAllow, error in
+                    if didAllow {
+                        self.isAuthorized = true
+                    }
+                }
+            default: return
+            }
+        }
+    }
+    
+    func dispatchNotification() {
+        let identifier = "deviation-in-route-notification"
+        let title = "Going out of route"
+        let body = "you are going out of the selected route"
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = .default
+        
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date())
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        notificationCenter.add(request)
+        
     }
     
     
@@ -240,6 +283,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if !isOnRoute {
             showAlert(message: "user moved out of route", viewController: self)
+            self.dispatchNotification()
         }
         if !showMapRoute {
             if let location = locations.first {
@@ -272,15 +316,3 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
 
-extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
-            return
-        }
-        UserManager.shared.image.append(image)
-    }
-    
-}
-    
