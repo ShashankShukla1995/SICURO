@@ -31,6 +31,7 @@ class AddContactViewController: UIViewController {
     @IBAction func didTapAddContact(_ sender: Any) {
         if let name = nameTextField.text, let email = emailTextField.text, email.isValidEmail {
             UserManager.shared.addContact(contact: Contact(email: email, name: name), email: UserManager.shared.getCharactersBeforeAt())
+            showAlert(title: "Done", message: "Contact added", viewController: self)
         }
         UserManager.shared.getContact()
     }

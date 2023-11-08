@@ -11,7 +11,6 @@
 		45AFA7612AEFBD9100CE3D8A /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AFA7602AEFBD9100CE3D8A /* Utility.swift */; };
 		45AFA7642AEFC45900CE3D8A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AFA7632AEFC45900CE3D8A /* CustomTextField.swift */; };
 		45B210CB2AF16FDC00778472 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B210CA2AF16FDC00778472 /* HomeViewController.swift */; };
-		5430C4242AEBE83700885485 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5430C4232AEBE83700885485 /* GoogleService-Info.plist */; };
 		8F8214DA2AE40868001CFA8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8214D92AE40868001CFA8F /* AppDelegate.swift */; };
 		8F8214DC2AE40868001CFA8F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8214DB2AE40868001CFA8F /* SceneDelegate.swift */; };
 		8F8214E12AE40868001CFA8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F8214DF2AE40868001CFA8F /* Main.storyboard */; };
@@ -36,6 +35,7 @@
 		8F8215522AF77887001CFA8F /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8F8215512AF77887001CFA8F /* FirebaseMessaging */; };
 		8F8215542AF7789E001CFA8F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8F8215532AF7789E001CFA8F /* FirebaseAnalytics */; };
 		8F8215582AFA38BC001CFA8F /* DriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8215572AFA38BC001CFA8F /* DriverViewController.swift */; };
+		8F82155E2AFBFB2A001CFA8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F82155D2AFBFB2A001CFA8F /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,7 +43,6 @@
 		45AFA7602AEFBD9100CE3D8A /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		45AFA7632AEFC45900CE3D8A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		45B210CA2AF16FDC00778472 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		5430C4232AEBE83700885485 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F8214D62AE40868001CFA8F /* SICURO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SICURO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F8214D92AE40868001CFA8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8F8214DB2AE40868001CFA8F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		8F82154F2AF1FCB2001CFA8F /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		8F8215552AF77D17001CFA8F /* SICURO.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SICURO.entitlements; sourceTree = "<group>"; };
 		8F8215572AFA38BC001CFA8F /* DriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverViewController.swift; sourceTree = "<group>"; };
+		8F82155D2AFBFB2A001CFA8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +119,7 @@
 		5430C4222AEBE82500885485 /* InfoAssets */ = {
 			isa = PBXGroup;
 			children = (
-				5430C4232AEBE83700885485 /* GoogleService-Info.plist */,
+				8F82155D2AFBFB2A001CFA8F /* GoogleService-Info.plist */,
 			);
 			path = InfoAssets;
 			sourceTree = "<group>";
@@ -324,8 +324,8 @@
 			files = (
 				8F8214E62AE40869001CFA8F /* LaunchScreen.storyboard in Resources */,
 				8F8214E32AE40869001CFA8F /* Assets.xcassets in Resources */,
+				8F82155E2AFBFB2A001CFA8F /* GoogleService-Info.plist in Resources */,
 				8F8214E12AE40868001CFA8F /* Main.storyboard in Resources */,
-				5430C4242AEBE83700885485 /* GoogleService-Info.plist in Resources */,
 				8F82154E2AF1ADE6001CFA8F /* ContactsTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,7 +518,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shashank.SICURO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sicuro.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -555,7 +555,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.shashank.SICURO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sicuro.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

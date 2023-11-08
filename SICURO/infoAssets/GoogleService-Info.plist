@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>927638149941-kn3a9fgbn1qiga7p9i8nf89sa307g0q2.apps.googleusercontent.com</string>
+	<string>109149830256-f7cj39kc37jtdemnhdj2i83pgtljkvqk.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.927638149941-kn3a9fgbn1qiga7p9i8nf89sa307g0q2</string>
+	<string>com.googleusercontent.apps.109149830256-f7cj39kc37jtdemnhdj2i83pgtljkvqk</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBmycqfJdbsaZju63F0tP5CzUu6Qjonn58</string>
+	<string>AIzaSyCw1pHBlMNJUBzdwZaJKSjOUipw7Az6Zog</string>
 	<key>GCM_SENDER_ID</key>
-	<string>927638149941</string>
+	<string>109149830256</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.shashank.SICURO</string>
+	<string>com.sicuro.app</string>
 	<key>PROJECT_ID</key>
-	<string>securo-f410a</string>
+	<string>sicuro-app</string>
 	<key>STORAGE_BUCKET</key>
-	<string>securo-f410a.appspot.com</string>
+	<string>sicuro-app.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:927638149941:ios:42dc1b6585592e10d40a7c</string>
+	<string>1:109149830256:ios:9dfb5abaa82090c068c8b5</string>
 </dict>
 </plist>
