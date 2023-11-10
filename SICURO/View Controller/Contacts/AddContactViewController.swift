@@ -31,8 +31,18 @@ class AddContactViewController: UIViewController {
     @IBAction func didTapAddContact(_ sender: Any) {
         if let name = nameTextField.text, let email = emailTextField.text, email.isValidEmail {
             UserManager.shared.addContact(contact: Contact(email: email, name: name), email: UserManager.shared.getCharactersBeforeAt())
-            showAlert(title: "Done", message: "Contact added", viewController: self)
+            self.showAlert(title: "Done", message: "Contact added", viewController: self)
         }
         UserManager.shared.getContact()
+    }
+    
+    func showAlert(title: String = "Warning!", message: String, closeBtnText: String = "OK", viewController: UIViewController) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: closeBtnText, style: .default, handler: { _ in
+            self.navigationController?.popViewController(animated: true)
+        })
+        alertController.addAction(okAction)
+        
+        viewController.present(alertController, animated: true, completion: nil)
     }
 }
